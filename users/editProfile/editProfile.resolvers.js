@@ -5,10 +5,13 @@ export default {
   Mutation: {
     editProfile: async (
       _,
-      { firstName, lastName, username, email, password: newPassword }
+      { firstName, lastName, username, email, password: newPassword },
+      { loggedInUser } //context
     ) => {
-      console.log("editProfile");
-      console.log(firstName, lastName, username, email, newPassword);
+      //console.log("editProfile");
+      //console.log(firstName, lastName, username, email, newPassword, token);
+
+      console.log("loggedInUser", loggedInUser);
 
       // hash password
       let uglyPassword = null;
@@ -18,7 +21,7 @@ export default {
       }
 
       const updatedUser = await client.user.update({
-        where: { id: 1 },
+        where: { id: loggedInUser.id },
         data: {
           firstName,
           lastName,
