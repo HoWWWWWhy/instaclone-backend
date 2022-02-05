@@ -2,7 +2,7 @@ import {
   loadFilesSync,
   mergeTypeDefs,
   mergeResolvers,
-  makeExecutableSchema,
+  //makeExecutableSchema,
 } from "graphql-tools";
 
 // loadFilesSync는 export default를 가져옴
@@ -12,6 +12,7 @@ const loadedResolvers = loadFilesSync(`${__dirname}/**/*.resolvers.js`);
 const typeDefs = mergeTypeDefs(loadedTypes);
 const resolvers = mergeResolvers(loadedResolvers);
 
-const schema = makeExecutableSchema({ typeDefs, resolvers });
+//const schema = makeExecutableSchema({ typeDefs, resolvers });
 
-export default schema;
+//export default schema;
+export { typeDefs, resolvers };

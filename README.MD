@@ -2,7 +2,7 @@
 
 Instaclone Backend.
 
-## User:
+## User
 
 - [x] Create Account
 - [x] See Profile
@@ -16,3 +16,8 @@ Instaclone Backend.
 - [ ] Computed Fields
 - [ ] Search Users
 
+## Note
+
+### #4.15
+- Playground 대신 Altair Tool 사용
+https://altair.sirmuel.design/
