@@ -23,3 +23,40 @@ export const getUser = async (token) => {
     return null;
   }
 };
+
+/*
+export const protectedResolver = (user) => {
+  if (!user) {
+    throw Error("You need to login.");
+};
+*/
+
+//functional programming
+//ourResolver를 실행할 resolver
+//protectedResolver는 graphQL resolver를 return하는 함수
+//graphQL resolver는 root, args, context, info를 받음
+//version 1
+/*
+export const protectedResolver =
+  (ourResolver) => (root, args, context, info) => {
+    if (!context.loggedInUser) {
+      return {
+        ok: false,
+        error: "You need to login.",
+      };
+    }
+    return ourResolver(root, args, context, info);
+  };
+*/
+//version 2
+export function protectedResolver(ourResolver) {
+  return function (root, args, context, info) {
+    if (!context.loggedInUser) {
+      return {
+        ok: false,
+        error: "You need to login.",
+      };
+    }
+    return ourResolver(root, args, context, info);
+  };
+}
