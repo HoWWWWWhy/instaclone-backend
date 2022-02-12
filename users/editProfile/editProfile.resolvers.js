@@ -5,7 +5,7 @@ import bcrypt from "bcrypt";
 import { protectedResolver } from "../users.utils";
 
 export default {
-  //Upload: GraphQLUpload,
+  Upload: GraphQLUpload,
 
   Mutation: {
     editProfile: protectedResolver(
@@ -29,18 +29,23 @@ export default {
         console.log("loggedInUser", loggedInUser);
 
         //protectedResolver(loggedInUser);
+        let avatarURL = null;
+        if (avatar) {
+          //File Upload: save a file in server temporarily
+          //console.log("avatar:", avatar);
+          const { filename, createReadStream } = await avatar;
+          const savedFileName = `${loggedInUser.id}-${Date.now()}-${filename}`;
 
-        //File Upload: save a file in server temporarily
-        //console.log("avatar:", avatar);
-        const { filename, createReadStream } = await avatar;
-        console.log("filename:", filename);
-        //console.log("createReadStream:", createReadStream);
-        const readStream = createReadStream();
-        const writeStream = createWriteStream(
-          process.cwd() + "/uploads/" + filename
-        );
-        readStream.pipe(writeStream);
-        console.log("readStream:", readStream);
+          console.log("filename:", filename);
+          //console.log("createReadStream:", createReadStream);
+          const readStream = createReadStream();
+          const writeStream = createWriteStream(
+            process.cwd() + "/uploads/" + savedFileName
+          );
+          readStream.pipe(writeStream);
+          //console.log("readStream:", readStream);
+          avatarURL = `http://localhost:4000/static/${savedFileName}`;
+        }
 
         // hash password
         let uglyPassword = null;
@@ -58,6 +63,7 @@ export default {
             email,
             bio,
             ...(uglyPassword && { password: uglyPassword }),
+            ...(avatarURL && { avatar: avatarURL }),
           },
         });
         console.log("updatedUser", updatedUser);
