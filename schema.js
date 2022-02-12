@@ -1,3 +1,6 @@
+// import { loadFilesSync } from "@graphql-tools/load-files";
+// import { mergeTypeDefs, mergeResolvers } from "@graphql-tools/merge";
+
 import {
   loadFilesSync,
   mergeTypeDefs,
