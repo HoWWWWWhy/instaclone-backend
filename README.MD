@@ -10,7 +10,7 @@ Instaclone Backend.
 - [x] Edit Profile
 - [x] Change Avatar (Image Upload)
 - [x] Follow User
-- [ ] Unfollow User
+- [x] Unfollow User
 - [ ] See Followers w/ Pagination
 - [ ] See Following w/ Pagination
 - [ ] Computed Fields
