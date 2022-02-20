@@ -15,6 +15,24 @@ export default {
             error: "That user does not exist. Can't unfollow user.",
           };
         }
+
+        //console.log("loggedInUser: ", loggedInUser);
+        const isFollowing = await client.user.count({
+          where: {
+            id: loggedInUser.id,
+            following: {
+              some: { username },
+            },
+          },
+        });
+        //console.log("isFollowing: ", isFollowing);
+        if (isFollowing === 0) {
+          return {
+            ok: false,
+            error: "You've already unfollowed the user",
+          };
+        }
+
         await client.user.update({
           where: {
             id: loggedInUser.id,
@@ -34,3 +52,12 @@ export default {
     ),
   },
 };
+/*
+const totalFollowers = await client.user.count({
+  where: {
+    following: {
+      some: { username },
+    },
+  },
+});
+*/
