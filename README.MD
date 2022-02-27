@@ -12,7 +12,7 @@ Instaclone Backend.
 - [x] Follow User
 - [x] Unfollow User
 - [x] See Followers and See Following w/ Pagination
-- [ ] Computed Fields
+- [x] Computed Fields
 - [ ] Search Users
 
 ## Note
@@ -26,3 +26,6 @@ https://altair.sirmuel.design/
 
 - Offset pagination (seeFollowers)
 - Cursor-based pagination (seeFollowing): 무제한 스크롤 사용 시 유용
+
+### #4.26 - 4.28
+- Computed Fields: GraphQL schema에는 있지만 database에는 없음. 매 요청 시마다 계산됨.

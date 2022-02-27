@@ -26,6 +26,7 @@ export default {
           skip: (page - 1) * 2,
         });
 
+      // 어떤 사람의 follower를 아는 방법은 그 사람을 follow 하고 있는 사람들의 수를 아는 것!
       const totalFollowers = await client.user.count({
         where: {
           following: {
