@@ -20,4 +20,36 @@ export default {
         },
       }),
   },
+
+  Hashtag: {
+    photos: ({ id }, { page }, { loggedInUser }) => {
+      //   return client.photo.findMany({
+      //     where: {
+      //       hashtags: {
+      //         some: {
+      //           id,
+      //         },
+      //       },
+      //     },
+      //   });
+      return client.hashtag
+        .findUnique({
+          where: {
+            id,
+          },
+        })
+        .photos();
+    },
+
+    totalPhotos: ({ id }) =>
+      client.photo.count({
+        where: {
+          hashtags: {
+            some: {
+              id,
+            },
+          },
+        },
+      }),
+  },
 };
